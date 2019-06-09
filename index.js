@@ -3,6 +3,7 @@ var ejsLayouts = require('express-ejs-layouts');
 var app = express();
 /* adding multer configs here:   */
 var multer = require('multer');
+//multer will create a new folder
 var upload = multer({ dest: './uploads/' });
 
 
@@ -14,7 +15,8 @@ app.get('/', function(req, res) {
 });
 
 /* setting the route for multer uploads here...  */
-app.post('/', upload.single('myFile'), function (req, res) {
+//in the new folder, the file name wil be what you specified...
+app.post('/', upload.single('aFileWithSomeName'), function (req, res) {
     res.send(req.file);
 });
 
