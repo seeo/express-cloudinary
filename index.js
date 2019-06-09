@@ -19,12 +19,18 @@ app.get('/', function(req, res) {
 
 /* setting the route for multer uploads here...  */
 //in the new folder, the file name wil be what you specified...
-app.post('/', upload.single('aFileWithSomeName'), function (req, res) {
+app.post('/', upload.single('myFileFromMulter'), function (req, res) {
     res.send(req.file);
 });
 
 //post route of uploaded cloudinary file
 //post route
+
+/* Uploading images to cloudinary can be done by requiring the cloudinary module and
+calling the upload function within cloudinary's uploader. Pass the path of the file that
+ needs to be uploaded, then print the results in the callback. The result will have
+ information regarding the cloudinary upload.   */
+
 app.post('/', upload.single('myFile'), function (req, res) {
     cloudinary.uploader.upload(req.file.path, function (result) {
         res.send(result);
